@@ -83,6 +83,10 @@ PROJELER: list[tuple[str, str]] = [
     ("07_embedding/foto_hafiza/indeksle.py", "Indeksle"),
     ("07_embedding/foto_hafiza/ara.py", "FotografAra"),
     ("07_embedding/oneshot_karsilastir.py", "OneShotKarsilastir"),
+    # 08 · OCR
+    ("08_ocr/belge_duzlestir.py", "BelgeDuzlestir"),
+    ("08_ocr/fis_okuyucu.py", "FisOkuyucu"),
+    ("08_ocr/fis_okuyucu.py", "GiderRaporu"),
 ]
 
 

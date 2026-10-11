@@ -1,0 +1,2 @@
+easyocr>=1.7         # metin tespiti + tanıma (tr, en); model dosyaları ilk çalıştırmada iner
+anthropic>=1.0       # mod=claude için (ANTHROPIC_API_KEY ya da `ant auth login`)
