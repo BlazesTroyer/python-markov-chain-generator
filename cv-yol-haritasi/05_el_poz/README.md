@@ -63,7 +63,7 @@ python 05_el_poz/ergonomi_kocu.py --kaynak 0 --uyari-sn 10 --goster             
 
 1. Aynı veriyle `--model gru` ve `--model mlp` eğit; sonra jest hızını değiştirerek (yavaş/hızlı kaydırma) canlıda dene. Hangisi daha dayanıklı?
 2. `--no-augmentation` ile eğit; özellikle elini farklı açıyla tuttuğunda fark var mı?
-3. `jest_canli` kural vs model: 2 dakikalık normal masa başı çalışmasında kaç **yanlış tetikleme** oldu? (`🗄️ Olay Deposu`'nda say.)
+3. `jest_canli` kural vs model: 2 dakikalık normal masa başı çalışmasında kaç **yanlış tetikleme** oldu? (`🗄️ Olaylar`'nda say.)
 4. Komutu gerçekten çalıştır: `pip install pyautogui`, olay deposunu dinleyen küçük bir döngüde
    `sonraki_sarki` → `pyautogui.press("nexttrack")`. (09'daki agent bunu daha düzenli yapar.)
 5. `tekrar_sayaci.py`'ye yeni egzersiz ekle (ör. omuz pres: kalça-omuz-dirsek açısı): `EGZERSIZLER` sözlüğüne bir satır.

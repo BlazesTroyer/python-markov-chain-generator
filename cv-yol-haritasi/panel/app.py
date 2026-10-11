@@ -17,7 +17,7 @@ NASIL ÇALIŞIR? (yukarıdan aşağı)
     5. Her çalıştırmadan sonra şunlar görünür:
          Çıktı görüntüsü | Ara adımlar galerisi | Sonuç özeti | Veri (JSON)
          "Ne oluyor?" (anlat.py log'u) | "Kod nerede?" (çalışan dosya:fonksiyon listesi)
-    6. "Olay Deposu" sekmesi agent hafızasını (SQLite) tablo olarak gösterir.
+    6. "🗄️ Olaylar" sekmesi agent hafızasını (SQLite) tablo olarak gösterir.
     7. "İşler" sekmesi arka planda çalışan eğitim/indeksleme işlerinin log'larını gösterir.
 
 GİZLİLİK: server_name=127.0.0.1 ve share=False -> panel sadece senin bilgisayarından açılır.
@@ -222,9 +222,10 @@ def _eylem_arayuzu(p: YuklenenProje):
         while is_.durum == "çalışıyor":
             yield (bas + f"\n\n⏳ **{is_.durum}**", None, [], "", {}, is_.log_sonu(), f"`{cls.DOSYA}`")
             time.sleep(1.0)
-        resimler = sorted(is_.klasor.glob("*.jpg")) + sorted(is_.klasor.glob("*.png"))
+        resimler = [r for r in sorted(is_.klasor.glob("*.jpg")) + sorted(is_.klasor.glob("*.png")) if not r.stem.endswith("_cikti")]
+        ana = is_.klasor / "sonuc_cikti.jpg"
         galeri = [(bgr2rgb(cv2.imread(str(r))), r.name) for r in resimler[:24]]
-        yield (bas + f"\n\n**Durum:** {is_.durum}", galeri[0][0] if galeri else None, galeri,
+        yield (bas + f"\n\n**Durum:** {is_.durum}", bgr2rgb(cv2.imread(str(ana))) if ana.exists() else None, galeri,
                f"İş bitti: **{is_.durum}**. Tüm çıktılar: `{is_.klasor}`", {}, is_.log_sonu(), f"`{cls.DOSYA}`")
 
     btn.click(arka_planda_calistir if cls.UZUN_SURER else hemen_calistir, ayar_bil, [komut_md, *ciktilar])
@@ -285,21 +286,22 @@ def uygulama_olustur() -> gr.Blocks:
     projeler = projeleri_yukle()
     with gr.Blocks(title="CV Yol Haritası Paneli") as demo:
         gr.Markdown(GIRIS_METNI)
-        with gr.Tabs():
+        with gr.Tabs(selected="b00"):        # açılışta 00 seçili gelsin
+            # Ortak araçlar EN BAŞTA: dar ekranda bölüm sekmeleri "⋯" menüsüne taşsa bile bunlar görünür kalsın
+            with gr.Tab("🗄️ Olaylar"):
+                _olay_deposu_sekmesi()
+            with gr.Tab("🧵 İşler"):
+                _isler_sekmesi()
             for kod, baslik in BOLUMLER.items():
                 bolum_projeleri = [p for p in projeler if p.bolum == kod]
                 if not bolum_projeleri:
                     continue
-                with gr.Tab(baslik):
+                with gr.Tab(baslik, id=f"b{kod}"):
                     with gr.Tabs():
                         for p in bolum_projeleri:
                             ad = p.sinif.ISIM if p.sinif else p.sinif_adi
                             with gr.Tab(ad):
                                 _proje_sekmesi(p)
-            with gr.Tab("🗄️ Olay Deposu"):
-                _olay_deposu_sekmesi()
-            with gr.Tab("🧵 İşler"):
-                _isler_sekmesi()
     return demo
 
 

@@ -39,7 +39,7 @@ python panel/app.py          # tarayıcıda http://127.0.0.1:7860
 | **Ne oluyor?** | Adım adım log (`ortak/anlat.py`). Her satırın sonunda `← dosya.py:fonksiyon`. |
 | **Kod nerede?** | Bu çalıştırmada hangi dosyanın hangi fonksiyonu çalıştı, sırasıyla. |
 | **Eşdeğer komut** | Panelde yaptığının terminaldeki birebir karşılığı. |
-| **🗄️ Olay Deposu** | Agent hafızası: projelerin ürettiği olaylar (SQLite tablo). |
+| **🗄️ Olaylar** | Agent hafızası: projelerin ürettiği olaylar (SQLite tablo). |
 | **🧵 İşler** | Arka planda çalışan eğitim/indeksleme işleri ve log'ları. |
 
 Panel nasıl çalışıyor / yeni proje nasıl eklenir → [panel/README.md](panel/README.md)
@@ -108,3 +108,20 @@ Her projeden sonra kendi README'ndeki **"Deneyler"** bölümünü yap ve sonuçl
 Her şey **yerelde** çalışır: panel sadece `127.0.0.1`'de açılır, olaylar `veri/olaylar.db`'de durur, yüz tanıma
 görüntü değil sadece embedding saklar. Dışarıya veri gönderen tek yerler, açıkça Claude API kullanan
 **08 fiş okuyucu (LLM modu)** ve **09 VLM yorumlama**dır; ikisi de `ANTHROPIC_API_KEY` verilmedikçe çalışmaz.
+
+## 8. Test durumu — neyi doğruladım, neyi doğrulayamadım?
+
+Bu klasör bir bulut konteynerinde (GPU yok, webcam yok, bazı model sunucuları erişime kapalı) yazıldı ve test edildi.
+
+```bash
+pytest                       # 92 hızlı test (model indirmez, webcam/GPU gerekmez)
+CV_AGIR_TEST=1 pytest        # + gerçek model testleri (YOLO, SAM, YuNet/SFace, MediaPipe poz, EasyOCR, ONNX export)
+```
+
+| Durum | Ne |
+|---|---|
+| ✅ Gerçek modellerle uçtan uca çalıştı | YOLO eğitimi (sentetik veri, CPU), tahmin + sıfırdan NMS (Ultralytics ile aynı sonuç), SORT/ByteTrack/BoT-SORT, YuNet+SFace yüz tanıma, duygu modeli eğitimi (timm, ön-eğitimsiz), MediaPipe poz (açı/ergonomi), SAM 2.1 + YOLO-seg, copy-paste dataset, YOLO-cls embedding + one-shot yarışı, EasyOCR fiş okuma, MCP sunucusu (gerçek MCP istemcisiyle), olay üretici, ONNX export + benchmark, 7/24 çalıştırıcı, kontrol paneli (tarayıcıda Playwright ile) |
+| ⚠️ Kod yazıldı, mantığı testli, ama burada gerçek modelle çalıştırılamadı | **Claude API** (fiş okuyucu `claude` modu, VLM, asistan — API anahtarı yoktu; sahte istemciyle test edildi), **CLIP / DINOv2 / YOLO-World** (HuggingFace ve CLIP ağırlık sunucuları kapalıydı), **timm ön-eğitimli ağırlıkları**, **MediaPipe el** (örnek görüntülerde el yoktu), **webcam / canlı akış**, **Docker imajı** (derlenmedi), **TensorRT / OpenVINO** export |
+
+Kendi bilgisayarında ilk çalıştırmada bunlar ağırlıklarını otomatik indirir. Bir sorun çıkarsa log'daki
+`← dosya.py:fonksiyon` satırı sana nereye bakacağını gösterir.

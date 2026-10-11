@@ -9,7 +9,7 @@ python panel/app.py --port 8000
 
 | Dosya | Görevi |
 |---|---|
-| `app.py` | Gradio arayüzünü kurar: bölüm sekmeleri, proje alt sekmeleri, Olay Deposu, İşler. |
+| `app.py` | Gradio arayüzünü kurar: bölüm sekmeleri, proje alt sekmeleri, 🗄️ Olaylar, 🧵 İşler. |
 | `kayit.py` | **Tek liste**: panelde hangi proje dosyası/sınıfı hangi sırayla görünecek. |
 | `otomatik_form.py` | `Ayarlar` dataclass'ı → slider/checkbox/dropdown. (`bilesen_tanimi` saf fonksiyon, test edilir.) |
 | `isler.py` | Uzun işleri (eğitim) ayrı süreçte başlatır, log'u `veri/isler/<iş>/log.txt`'e yazar. |

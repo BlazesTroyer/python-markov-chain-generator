@@ -62,7 +62,7 @@ python 09_agent/mcp_server.py --listele          # araçları ve açıklamaları
 ```
 
 Panelde: **09 · Agent** → *Olay üretici* (Canlı/Video, "Olayları depoya yaz" açık) → *Kişisel asistan* (soru yaz, Çalıştır).
-**🗄️ Olay Deposu** sekmesinden agent'ın neye dayanarak cevap verdiğini satır satır görebilirsin.
+**🗄️ Olaylar** sekmesinden agent'ın neye dayanarak cevap verdiğini satır satır görebilirsin.
 
 ## Neye bakmalısın?
 
@@ -74,7 +74,7 @@ Panelde: **09 · Agent** → *Olay üretici* (Canlı/Video, "Olayları depoya ya
 
 1. `araclar.py`'ye yeni bir araç ekle (ör. `posture_today()`: bugünkü `kotu_durus_uyari` sayısı). `ARACLAR` listesine eklemen yeterli: hem MCP hem asistan otomatik görür.
 2. Bir aracın docstring'ini belirsizleştir ("bilgi verir"). Claude o aracı doğru zamanda çağırmayı bırakıyor mu? (Araç açıklamalarının önemi.)
-3. `olay_ureteci.py`'de `--vlm` aç; kişi girişlerinde gelen sahne açıklamalarını Olay Deposu'nda incele. Hangi bekleme süresi makul?
+3. `olay_ureteci.py`'de `--vlm` aç; kişi girişlerinde gelen sahne açıklamalarını 🗄️ Olaylar sekmesinde incele. Hangi bekleme süresi makul?
 4. Proaktif agent: Olay deposunu dakikada bir okuyup `kotu_durus_uyari` ya da `tanimadik_yuz` gelince sana bildirim (ör. masaüstü bildirimi / Telegram) gönderen küçük bir döngü yaz.
 5. Jestten komuta: 05'in `jest` olaylarını okuyup komutu gerçekten çalıştıran (müzik, ışık) bir "eyleyici" yaz. Agent artık hem görüyor hem eyliyor.
 

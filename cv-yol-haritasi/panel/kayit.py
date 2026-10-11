@@ -19,18 +19,18 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from ortak.yukle import modul_yukle  # noqa: E402
 
-BOLUMLER = {
-    "00": "00 · Temeller",
-    "01": "01 · Veri Fabrikası",
-    "02": "02 · YOLO Fine-Tune",
-    "03": "03 · Takip",
-    "04": "04 · Yüz",
-    "05": "05 · El / Poz / Jest",
-    "06": "06 · Segmentasyon",
-    "07": "07 · Embedding",
-    "08": "08 · OCR",
-    "09": "09 · Agent",
-    "10": "10 · Dağıtım",
+BOLUMLER = {   # kısa adlar: 13 sekme tek satıra sığsın (sığmazsa Gradio "⋯" menüsüne taşır)
+    "00": "00 Temel",
+    "01": "01 Veri",
+    "02": "02 YOLO",
+    "03": "03 Takip",
+    "04": "04 Yüz",
+    "05": "05 El/Poz",
+    "06": "06 Segment",
+    "07": "07 Embed",
+    "08": "08 OCR",
+    "09": "09 Agent",
+    "10": "10 Dağıtım",
 }
 
 # (dosya yolu — cv-yol-haritasi/ köküne göre, sınıf adı)
