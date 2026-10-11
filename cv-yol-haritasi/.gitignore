@@ -1,0 +1,12 @@
+# Çalışma sırasında üretilen veriler (olay deposu, işler, datasetler) — repoya girmez
+veri/
+runs/
+dbg/
+*.db
+# Model ağırlıkları ve exportlar (büyük dosyalar)
+*.pt
+*.pth
+*.onnx
+*.engine
+*.faiss
+.venv/

@@ -1,0 +1,8 @@
+# Bütün bölümlerin ortak ihtiyacı (panel + 00 + testler)
+numpy>=1.26
+opencv-python>=4.9          # sunucuda pencere gerekmiyorsa: opencv-python-headless
+scipy>=1.11                 # Macar algoritması (03 takip)
+albumentations>=1.4         # 00/01 augmentation karşılaştırması
+gradio>=5.0                 # kontrol paneli
+pytest>=8.0
+# Bölümlere özel paketler: her klasörün kendi requirements.txt dosyasında.
