@@ -109,12 +109,17 @@ class EsyaHafizasi(KareIsleyici):
         model = yy.model_yukle(ayarlar.model)
         r = model.predict(kare, conf=ayarlar.guven, verbose=False)[0]
         kutular, siniflar, guvenler, isimler = yy.sonucu_ayikla(r)
+        anlat.adim(f"{len(kutular)} tespit", kod="ultralytics:YOLO.predict")
+        return self.tespitleri_isle(kare, kutular, siniflar, guvenler, isimler, ayarlar, anlat)
+
+    def tespitleri_isle(self, kare, kutular, siniflar, guvenler, isimler, ayarlar: Ayarlar, anlat, cikti=None):
+        """Hazır tespitlerden kayıt kararlarını ver. (09_agent/olay_ureteci.py aynı YOLO sonucunu
+        hem kişi takibi hem eşya hafızası için kullanmak üzere bunu doğrudan çağırır — çift çıkarım olmaz.)"""
         esleme = esleme_coz(ayarlar.isim_esleme)
         y, g = kare.shape[:2]
         kosegen = float(np.hypot(g, y))
-        anlat.adim(f"{len(kutular)} tespit", kod="ultralytics:YOLO.predict")
-
-        cikti, olaylar, simdi = kare.copy(), [], time.time()
+        cikti = kare.copy() if cikti is None else cikti
+        olaylar, simdi = [], time.time()
         for k, s, c in zip(kutular, siniflar, guvenler):
             model_adi = isimler[s]
             if ayarlar.sadece_eslesenler and esleme and model_adi not in esleme:

@@ -87,6 +87,10 @@ PROJELER: list[tuple[str, str]] = [
     ("08_ocr/belge_duzlestir.py", "BelgeDuzlestir"),
     ("08_ocr/fis_okuyucu.py", "FisOkuyucu"),
     ("08_ocr/fis_okuyucu.py", "GiderRaporu"),
+    # 09 · Agent
+    ("09_agent/olay_ureteci.py", "OlayUreteci"),
+    ("09_agent/asistan.py", "Asistan"),
+    ("09_agent/vlm_yorumla.py", "VlmYorumla"),
 ]
 
 
