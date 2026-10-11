@@ -69,6 +69,12 @@ PROJELER: list[tuple[str, str]] = [
     ("04_yuz/emotion_v2/duygu_topla.py", "DuyguTopla"),
     ("04_yuz/emotion_v2/egit.py", "DuyguEgit"),
     ("04_yuz/emotion_v2/canli.py", "DuyguCanli"),
+    # 05 · El / Poz / Jest
+    ("05_el_poz/jest_canli.py", "JestCanli"),
+    ("05_el_poz/jest_kaydet.py", "JestKaydet"),
+    ("05_el_poz/jest_egit.py", "JestEgit"),
+    ("05_el_poz/tekrar_sayaci.py", "TekrarSayaciDemo"),
+    ("05_el_poz/ergonomi_kocu.py", "ErgonomiKocu"),
 ]
 
 
