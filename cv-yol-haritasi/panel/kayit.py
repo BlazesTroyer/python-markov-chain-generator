@@ -62,6 +62,13 @@ PROJELER: list[tuple[str, str]] = [
     ("03_takip/ekran_suresi.py", "EkranSuresi"),
     ("03_takip/ekran_suresi.py", "EkranSuresiRaporu"),
     ("03_takip/bolge_sayaci.py", "BolgeSayaci"),
+    # 04 · Yüz
+    ("04_yuz/yuz_tanima/kaydet.py", "YuzFotografiTopla"),
+    ("04_yuz/yuz_tanima/veritabani.py", "VeritabaniOlustur"),
+    ("04_yuz/yuz_tanima/tani.py", "YuzTani"),
+    ("04_yuz/emotion_v2/duygu_topla.py", "DuyguTopla"),
+    ("04_yuz/emotion_v2/egit.py", "DuyguEgit"),
+    ("04_yuz/emotion_v2/canli.py", "DuyguCanli"),
 ]
 
 

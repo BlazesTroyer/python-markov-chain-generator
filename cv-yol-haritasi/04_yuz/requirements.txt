@@ -1,0 +1,8 @@
+# Yüz tanıma: sadece opencv (requirements-temel.txt) — YuNet + SFace ONNX dosyaları otomatik iner.
+# Emotion v2 eğitimi/canlı:
+torch>=2.2
+torchvision>=0.17
+timm>=1.0
+# Opsiyonel karşılaştırmalar:
+# deepface        (duygu: v1 ile kıyas)
+# insightface onnxruntime   (ArcFace ile daha güçlü yüz tanıma)

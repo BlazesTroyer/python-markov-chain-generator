@@ -108,3 +108,51 @@ def bgr2rgb(img):
 def rgb2bgr(img):
     """Gradio/PIL (RGB) -> OpenCV (BGR). Panelden gelen görüntüler buradan geçer."""
     return None if img is None else cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+
+
+def egri_ciz(seriler: dict[str, list[float]], baslik: str = "", G: int = 560, Y: int = 300) -> np.ndarray:
+    """Eğitim eğrileri (loss/accuracy) — matplotlib'siz basit çizgi grafik.
+
+    seriler: {"train_loss": [...], "val_loss": [...]}  (hepsi aynı x ekseninde: epoch)
+    """
+    img = np.full((Y, G, 3), 255, np.uint8)
+    sol, sag, ust, alt = 50, G - 130, 28, Y - 30
+    cv2.rectangle(img, (sol, ust), (sag, alt), (0, 0, 0), 1)
+    cv2.putText(img, baslik, (sol, 18), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
+    degerler = [v for s in seriler.values() for v in s]
+    if not degerler:
+        return img
+    en_az, en_cok = min(degerler), max(degerler)
+    aralik = (en_cok - en_az) or 1.0
+    n = max(len(s) for s in seriler.values())
+    for k in range(5):
+        v = en_az + aralik * k / 4
+        yy = int(alt - (v - en_az) / aralik * (alt - ust))
+        cv2.putText(img, f"{v:.2f}", (4, yy + 4), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 0), 1)
+    for i, (ad, s) in enumerate(seriler.items()):
+        renk = id_rengi(i + 3)
+        noktalar = [(int(sol + (j / max(n - 1, 1)) * (sag - sol)), int(alt - (v - en_az) / aralik * (alt - ust))) for j, v in enumerate(s)]
+        for p1, p2 in zip(noktalar[:-1], noktalar[1:]):
+            cv2.line(img, p1, p2, renk, 2)
+        cv2.putText(img, ad, (sag + 8, ust + 16 + 18 * i), cv2.FONT_HERSHEY_SIMPLEX, 0.45, renk, 1, cv2.LINE_AA)
+    cv2.putText(img, f"epoch (1..{n})", (sol + (sag - sol) // 2 - 30, Y - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 0), 1)
+    return img
+
+
+def matris_gorsel(matris: np.ndarray, etiketler: list[str], baslik: str = "satir=gercek, sutun=tahmin", hucre: int = 48) -> np.ndarray:
+    """Karışıklık matrisi: satır = gerçek sınıf, sütun = tahmin. Hücrede adet; renk satır içi orana göre."""
+    n = len(etiketler)
+    sol, ust = 90, 70
+    img = np.full((ust + n * hucre + 10, sol + n * hucre + 10, 3), 255, np.uint8)
+    cv2.putText(img, baslik, (6, 18), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 0), 1, cv2.LINE_AA)
+    satir_top = matris.sum(axis=1, keepdims=True).clip(min=1)
+    for i in range(n):
+        cv2.putText(img, etiketler[i][:10], (4, ust + i * hucre + hucre // 2 + 4), cv2.FONT_HERSHEY_SIMPLEX, 0.4, (0, 0, 0), 1)
+        cv2.putText(img, etiketler[i][:6], (sol + i * hucre + 2, ust - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.35, (0, 0, 0), 1)
+        for j in range(n):
+            oran = matris[i, j] / satir_top[i, 0]
+            renk = (int(255 - 200 * oran), int(255 - 120 * oran), 255) if i != j else (int(255 - 200 * oran), 255, int(255 - 200 * oran))
+            x0, y0 = sol + j * hucre, ust + i * hucre
+            cv2.rectangle(img, (x0, y0), (x0 + hucre - 2, y0 + hucre - 2), renk, -1)
+            cv2.putText(img, str(int(matris[i, j])), (x0 + 6, y0 + hucre // 2 + 4), cv2.FONT_HERSHEY_SIMPLEX, 0.45, (0, 0, 0), 1)
+    return img
