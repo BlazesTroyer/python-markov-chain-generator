@@ -91,6 +91,9 @@ PROJELER: list[tuple[str, str]] = [
     ("09_agent/olay_ureteci.py", "OlayUreteci"),
     ("09_agent/asistan.py", "Asistan"),
     ("09_agent/vlm_yorumla.py", "VlmYorumla"),
+    # 10 · Dağıtım  (kamera_7x24.py panel için değil, sürekli çalışan betik — README'ye bak)
+    ("10_dagitim/export.py", "Export"),
+    ("10_dagitim/benchmark.py", "Benchmark"),
 ]
 
 

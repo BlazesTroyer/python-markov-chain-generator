@@ -1,0 +1,14 @@
+# 7/24 çalışan kişisel göz. cv-yol-haritasi/ klasöründen:
+#   docker compose -f 10_dagitim/docker-compose.yml up -d     (başlat)
+#   docker compose -f 10_dagitim/docker-compose.yml logs -f   (NABIZ satırlarını izle)
+services:
+  kisisel-goz:
+    build:
+      context: ..
+      dockerfile: 10_dagitim/Dockerfile
+    restart: unless-stopped            # çökerse / makine yeniden başlarsa otomatik başlat
+    devices:
+      - /dev/video0:/dev/video0        # USB webcam (Linux). IP kamera kullanıyorsan bunu sil, --kaynak rtsp://... ver
+    volumes:
+      - ../veri:/veri                  # olaylar.db, son_kare.jpg, modeller, log — panel ve agent AYNI veriyi görür
+    command: ["--kaynak", "0", "--model", "/veri/modeller/yolo11n.onnx", "--nabiz-sn", "300", "--log-dosyasi", "/veri/kamera.log"]

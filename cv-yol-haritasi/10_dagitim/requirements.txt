@@ -1,0 +1,6 @@
+ultralytics>=8.3
+onnx>=1.16
+onnxruntime>=1.18    # ONNX modelini CPU'da çalıştırmak için
+onnxslim             # Ultralytics ONNX export'unda modeli sadeleştirir
+# openvino>=2024.0   # Intel CPU/iGPU için (--format openvino)
+# TensorRT: NVIDIA'nın kurulum rehberine bak (--format engine; sadece NVIDIA GPU'lu makinede)
