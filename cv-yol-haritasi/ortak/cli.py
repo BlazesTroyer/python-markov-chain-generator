@@ -154,9 +154,11 @@ def _kare_dongusu(proje: KareIsleyici, ayarlar, anlat: Anlatici, args):
 
 
 def _gorselleri_kaydet(sonuc, klasor: Path, on_ek: str):
+    from .cizim import dosya_adi
+
     klasor.mkdir(parents=True, exist_ok=True)
     if sonuc.goruntu is not None:
         cv2.imwrite(str(klasor / f"{on_ek}_cikti.jpg"), sonuc.goruntu)
     for isim, g in sonuc.ara_gorseller.items():
-        guvenli = "".join(c if c.isalnum() else "_" for c in isim)
-        cv2.imwrite(str(klasor / f"{on_ek}_{guvenli}.jpg"), g)
+        if g is not None:
+            cv2.imwrite(str(klasor / f"{on_ek}_{dosya_adi(isim)}.jpg"), g)

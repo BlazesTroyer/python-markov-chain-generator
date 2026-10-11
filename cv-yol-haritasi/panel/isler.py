@@ -24,6 +24,7 @@ from pathlib import Path
 
 KOK = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(KOK))
+from ortak.cizim import dosya_adi  # noqa: E402
 from ortak.yukle import VERI  # noqa: E402
 ISLER_KLASORU = VERI / "isler"
 
@@ -67,7 +68,7 @@ class IsYoneticisi:
 
     def baslat(self, isim: str, dosya: str, argv: list[str]) -> Is:
         """dosya: KOK'a göre .py yolu; argv: ayarlardan üretilmiş argümanlar."""
-        kimlik = time.strftime("%Y%m%d_%H%M%S") + "_" + "".join(c if c.isalnum() else "_" for c in isim)[:30]
+        kimlik = time.strftime("%Y%m%d_%H%M%S") + "_" + dosya_adi(isim)[:30]   # ASCII: Windows yolları için
         klasor = ISLER_KLASORU / kimlik
         klasor.mkdir(parents=True, exist_ok=True)
         komut = [sys.executable, str(KOK / dosya), *argv, "--cikti-klasor", str(klasor), "--anlat"]

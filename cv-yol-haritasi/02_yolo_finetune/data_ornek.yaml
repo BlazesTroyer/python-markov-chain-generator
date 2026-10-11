@@ -1,0 +1,15 @@
+# Ultralytics dataset tanımı — ÖRNEK / ŞABLON
+# Normalde 01_veri_fabrikasi/dataset_bol.py bunu otomatik yazar. Elle yazmak istersen:
+
+path: /tam/yol/cv-yol-haritasi/veri/datasetler/esyalarim   # dataset kök klasörü (tam yol en güvenlisi)
+train: images/train      # path'e göre; etiketler otomatik olarak labels/train'de aranır
+val: images/val
+test: images/test        # opsiyonel; egit.py --test-degerlendir ile en sonda ölçülür
+
+# Sınıf numarası: ad. Etiket dosyalarındaki ilk sayı bu numaradır. SIRAYI DEĞİŞTİRME
+# (değiştirirsen eski etiketler yanlış sınıfı gösterir).
+names:
+  0: anahtar
+  1: cuzdan
+  2: kupa
+  3: telefon

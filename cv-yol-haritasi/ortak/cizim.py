@@ -85,6 +85,21 @@ def izgara(goruntuler: list[np.ndarray], basliklar: list[str] | None = None, sut
     return tuval
 
 
+_TR = str.maketrans("çğıöşüÇĞİÖŞÜâîû", "cgiosuCGIOSUaiu")
+
+
+def dosya_adi(metin: str) -> str:
+    """Metni güvenli dosya adına çevir: Türkçe harfler -> ASCII, diğer işaretler -> '_'.
+
+    NEDEN? cv2.imwrite/imread Windows'ta ASCII olmayan yollarda sessizce BAŞARISIZ olur.
+    'şişe' -> 'sise', 'loss ve mAP eğrileri' -> 'loss_ve_mAP_egrileri'
+    """
+    temiz = "".join(c if (c.isascii() and c.isalnum()) or c in "-." else "_" for c in metin.translate(_TR))
+    while "__" in temiz:
+        temiz = temiz.replace("__", "_")
+    return temiz.strip("_") or "dosya"
+
+
 def bgr2rgb(img):
     """OpenCV (BGR) -> Gradio/PIL (RGB). Panel her görüntüyü göstermeden önce bunu çağırır."""
     return None if img is None else cv2.cvtColor(img, cv2.COLOR_BGR2RGB)

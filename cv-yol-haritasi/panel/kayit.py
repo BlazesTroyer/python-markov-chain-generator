@@ -47,6 +47,13 @@ PROJELER: list[tuple[str, str]] = [
     ("01_veri_fabrikasi/etiket_kontrol.py", "EtiketKontrol"),
     ("01_veri_fabrikasi/dataset_bol.py", "DatasetBol"),
     ("01_veri_fabrikasi/augment_uret.py", "AugmentUret"),
+    # 02 · YOLO Fine-Tune
+    ("02_yolo_finetune/egit.py", "Egit"),
+    ("02_yolo_finetune/deney_karsilastir.py", "DeneyKarsilastir"),
+    ("02_yolo_finetune/tahmin.py", "Tahmin"),
+    ("02_yolo_finetune/telefon_dedektoru_v2.py", "TelefonDedektoruV2"),
+    ("02_yolo_finetune/esya_hafizasi.py", "EsyaHafizasi"),
+    ("02_yolo_finetune/esya_hafizasi.py", "NeredeSorgu"),
 ]
 
 
