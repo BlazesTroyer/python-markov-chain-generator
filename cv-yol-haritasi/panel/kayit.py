@@ -79,6 +79,10 @@ PROJELER: list[tuple[str, str]] = [
     ("06_segmentasyon/nesne_topla_sam.py", "NesneToplaSAM"),
     ("06_segmentasyon/copy_paste_aug.py", "CopyPasteAug"),
     ("06_segmentasyon/seg_karsilastir.py", "SegKarsilastir"),
+    # 07 · Embedding
+    ("07_embedding/foto_hafiza/indeksle.py", "Indeksle"),
+    ("07_embedding/foto_hafiza/ara.py", "FotografAra"),
+    ("07_embedding/oneshot_karsilastir.py", "OneShotKarsilastir"),
 ]
 
 

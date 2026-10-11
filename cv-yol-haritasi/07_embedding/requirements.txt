@@ -1,0 +1,6 @@
+ultralytics>=8.3        # yolo_cls gömücüsü, yolo_world / yolo_model karşılaştırması
+open_clip_torch>=2.24   # clip gömücüsü (metinle fotoğraf arama)
+timm>=1.0               # dinov2 gömücüsü
+pillow>=10
+# faiss-cpu             # opsiyonel: çok büyük galerilerde hızlı arama
+# YOLO-World için:  pip install git+https://github.com/ultralytics/CLIP.git

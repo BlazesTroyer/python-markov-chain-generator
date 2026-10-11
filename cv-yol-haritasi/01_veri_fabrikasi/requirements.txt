@@ -1,2 +1,4 @@
 # Sadece otomatik_etiketle.py için (YOLO-World). Diğer dosyalar requirements-temel.txt ile çalışır.
 ultralytics>=8.3
+# YOLO-World metin istemlerini CLIP ile kodlar (Ultralytics bunu otomatik kurmayı dener; olmazsa elle):
+#   pip install git+https://github.com/ultralytics/CLIP.git
