@@ -40,6 +40,13 @@ PROJELER: list[tuple[str, str]] = [
     ("00_temeller/metrikler.py", "MetrikOyunAlani"),
     ("00_temeller/hareket_kapisi.py", "HareketKapisi"),
     ("00_temeller/klasik_islemler.py", "KlasikIslemler"),
+    # 01 · Veri Fabrikası (sırası = önerilen iş akışı)
+    ("01_veri_fabrikasi/ornek_dataset.py", "OrnekDataset"),
+    ("01_veri_fabrikasi/kare_cikar.py", "KareCikar"),
+    ("01_veri_fabrikasi/otomatik_etiketle.py", "OtomatikEtiketle"),
+    ("01_veri_fabrikasi/etiket_kontrol.py", "EtiketKontrol"),
+    ("01_veri_fabrikasi/dataset_bol.py", "DatasetBol"),
+    ("01_veri_fabrikasi/augment_uret.py", "AugmentUret"),
 ]
 
 

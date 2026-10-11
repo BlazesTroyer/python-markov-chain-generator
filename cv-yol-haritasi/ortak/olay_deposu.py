@@ -34,7 +34,9 @@ import sqlite3
 import time
 from pathlib import Path
 
-VARSAYILAN_DB = Path(__file__).resolve().parents[1] / "veri" / "olaylar.db"
+from .yukle import VERI  # noqa: E402
+
+VARSAYILAN_DB = VERI / "olaylar.db"
 
 _SEMA = """
 CREATE TABLE IF NOT EXISTS olaylar (

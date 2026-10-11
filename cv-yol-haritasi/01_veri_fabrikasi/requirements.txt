@@ -1,0 +1,2 @@
+# Sadece otomatik_etiketle.py için (YOLO-World). Diğer dosyalar requirements-temel.txt ile çalışır.
+ultralytics>=8.3

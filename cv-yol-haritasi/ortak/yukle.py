@@ -16,10 +16,28 @@ from __future__ import annotations
 
 import importlib
 import importlib.util
+import os
 import sys
 from pathlib import Path
 
 KOK = Path(__file__).resolve().parents[1]   # .../cv-yol-haritasi
+# Bütün üretilen veriler (datasetler, olaylar, eğitim çıktıları) burada. Testler CV_VERI_KOK ile geçici klasöre yönlendirir.
+VERI = Path(os.environ.get("CV_VERI_KOK", KOK / "veri"))
+
+
+def yol_coz(yol: str | Path) -> Path:
+    """Kullanıcının yazdığı yolu gerçek yola çevir.
+
+    - Tam yol           -> olduğu gibi
+    - "veri/..." ile başlayan -> VERI klasörü altında (CV_VERI_KOK değiştiyse oraya)
+    - diğer göreli yollar -> proje köküne (cv-yol-haritasi/) göre
+    """
+    p = Path(yol)
+    if p.is_absolute():
+        return p
+    if p.parts and p.parts[0] == "veri":
+        return VERI.joinpath(*p.parts[1:])
+    return KOK / p
 
 
 def kok_yolu_ekle() -> None:

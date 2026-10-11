@@ -23,7 +23,9 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 KOK = Path(__file__).resolve().parents[1]
-ISLER_KLASORU = KOK / "veri" / "isler"
+sys.path.insert(0, str(KOK))
+from ortak.yukle import VERI  # noqa: E402
+ISLER_KLASORU = VERI / "isler"
 
 
 @dataclass
