@@ -1,0 +1,3 @@
+scipy>=1.11          # Macar algoritması (linear_sum_assignment) — sıfırdan takipçiler için
+ultralytics>=8.3     # dedektor=yolo ve ByteTrack/BoT-SORT karşılaştırması için
+lap>=0.5.12          # Ultralytics takipçilerinin (model.track) ihtiyacı

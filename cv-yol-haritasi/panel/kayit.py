@@ -54,6 +54,14 @@ PROJELER: list[tuple[str, str]] = [
     ("02_yolo_finetune/telefon_dedektoru_v2.py", "TelefonDedektoruV2"),
     ("02_yolo_finetune/esya_hafizasi.py", "EsyaHafizasi"),
     ("02_yolo_finetune/esya_hafizasi.py", "NeredeSorgu"),
+    # 03 · Takip
+    ("03_takip/sentetik_test.py", "SentetikTest"),
+    ("03_takip/iou_takipci.py", "IouTakipDemo"),
+    ("03_takip/sort_sifirdan.py", "SortDemo"),
+    ("03_takip/karsilastir_bytetrack.py", "KarsilastirByteTrack"),
+    ("03_takip/ekran_suresi.py", "EkranSuresi"),
+    ("03_takip/ekran_suresi.py", "EkranSuresiRaporu"),
+    ("03_takip/bolge_sayaci.py", "BolgeSayaci"),
 ]
 
 
