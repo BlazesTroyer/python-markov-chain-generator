@@ -22,7 +22,7 @@ ORTAK BAYRAKLAR (KareIsleyici):
     --cikti sonuc.mp4              işlenmiş videoyu kaydet
     --debug-klasor dbg/            ara görselleri (maske, Kalman...) kare kare kaydet
     --olaylari-kaydet              Sonuc.olaylar'ı olay deposuna (SQLite) yaz
-    --en-fazla 300                 en fazla kaç kare
+    --en-fazla-kare 300            en fazla kaç kare
 """
 from __future__ import annotations
 
@@ -60,7 +60,7 @@ def _parser_olustur(proje_sinifi) -> argparse.ArgumentParser:
         o.add_argument("--cikti", default="", help="İşlenmiş videoyu bu yola kaydet (.mp4)")
         o.add_argument("--debug-klasor", default="", help="Ara görselleri bu klasöre kaydet")
         o.add_argument("--olaylari-kaydet", action="store_true", help="Olayları SQLite olay deposuna yaz")
-        o.add_argument("--en-fazla", type=int, default=None, help="En fazla kaç kare işlensin")
+        o.add_argument("--en-fazla-kare", type=int, default=None, help="En fazla kaç kare işlensin")
     else:
         o.add_argument("--cikti-klasor", default="", help="Sonuç görsellerini bu klasöre kaydet")
     return p
@@ -122,7 +122,7 @@ def _kare_dongusu(proje: KareIsleyici, ayarlar, anlat: Anlatici, args):
 
     son = None
     t0, n = time.perf_counter(), 0
-    for no, kare in kareleri_oku(args.kaynak, en_fazla=args.en_fazla):
+    for no, kare in kareleri_oku(args.kaynak, en_fazla=args.en_fazla_kare):
         anlat.sifirla()
         if args.anlat:
             print(f"--- kare {no} ---")

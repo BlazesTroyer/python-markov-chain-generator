@@ -1,0 +1,2 @@
+ultralytics>=8.3     # SAM / SAM 2.1 (sam2.1_t.pt) ve YOLO-seg; ağırlıklar ilk çalıştırmada iner
+mediapipe>=0.10.14   # nesne_topla_sam.py el çıkarma (opsiyonel; yoksa uyarı verip atlar)

@@ -53,3 +53,16 @@ def test_panel_kurulur():
     import app
     demo = app.uygulama_olustur()
     assert demo is not None
+
+
+def test_her_projenin_komut_satiri_kurulur():
+    """Ortak CLI bayrakları (--kaynak, --cikti, --en-fazla-kare...) ile proje ayarları ÇAKIŞMAMALI
+    ve varsayılan argümanlarla Ayarlar nesnesi oluşabilmeli."""
+    from ortak.arayuz import ayarlari_olustur
+    from ortak.cli import _parser_olustur, ayarlari_argv
+
+    for p in projeleri_yukle():
+        parser = _parser_olustur(p.sinif)                        # çakışma varsa argparse burada hata verir
+        ayarlar = ayarlari_olustur(p.sinif.Ayarlar, vars(parser.parse_args([])))
+        geri = ayarlari_olustur(p.sinif.Ayarlar, vars(parser.parse_args(ayarlari_argv(p.sinif.Ayarlar, ayarlar))))
+        assert geri == ayarlar, p.dosya

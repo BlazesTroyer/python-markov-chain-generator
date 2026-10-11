@@ -75,6 +75,10 @@ PROJELER: list[tuple[str, str]] = [
     ("05_el_poz/jest_egit.py", "JestEgit"),
     ("05_el_poz/tekrar_sayaci.py", "TekrarSayaciDemo"),
     ("05_el_poz/ergonomi_kocu.py", "ErgonomiKocu"),
+    # 06 · Segmentasyon
+    ("06_segmentasyon/nesne_topla_sam.py", "NesneToplaSAM"),
+    ("06_segmentasyon/copy_paste_aug.py", "CopyPasteAug"),
+    ("06_segmentasyon/seg_karsilastir.py", "SegKarsilastir"),
 ]
 
 
